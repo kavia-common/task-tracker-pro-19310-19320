@@ -1,0 +1,8 @@
+{
+  "staticRoutes": [
+    "/",
+    "/login/",
+    "/signup/",
+    "/todos/"
+  ]
+}
