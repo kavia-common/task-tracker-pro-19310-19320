@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Tracker – Next.js Frontend
+
+This is the frontend for the Task Tracker application built with Next.js App Router.
+
+## Prerequisites
+
+- Node.js 18+
+- A running backend (Django) serving the REST API.
+- Set the environment variable for the backend base URL.
+
+Create a `.env.local` in this folder and set:
+
+```
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
+```
+
+See `.env.example` for reference.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` – start development server
+- `npm run build` – production build
+- `npm start` – run production build
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Authentication: login, registration, logout
+- Tasks: list, create, update, delete, toggle completion, search
+- Profile: view/update profile, change password
+- Responsive UI with Tailwind CSS v4
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- The frontend reads the backend base URL from `NEXT_PUBLIC_API_BASE_URL` at build/runtime.
+- Auth tokens are stored in `localStorage` and sent via `Authorization: Token <token>`.
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- The provided backend OpenAPI spec requires a `profile/{id}/` path param for profile retrieval. The UI includes a field to input the user ID to load profile data.
+- If your backend offers a “current user” endpoint (e.g., `/profile/me/`), you can update the profile page to auto-load without requiring ID input.
+- Ensure CORS settings on the backend allow requests from the frontend origin.
